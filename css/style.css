@@ -1,3 +1,11 @@
 body {
-  
+  height: 95vh; /*viel height*/
+  width: 95;
+  display: flex;
+  /*alinhar vertical*/
+  justify-content: center;
+  /*alinhar horizontal*/
+  align-items: center;
+  /*alinhar itens um abaixo do outro*/
+  flex-direction: column;
 }
