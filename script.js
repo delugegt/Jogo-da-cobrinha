@@ -7,6 +7,12 @@ snake[0] = { //detalhando indices/itens do array
   y: 8 * box
 }
 let direction = "right";
+let food = {
+  //aleatório
+  //floor retira partes flutuantes do random, que retorna aleatório até 16, ou o tamanho do canvas
+  x: Math.floor(Math.random() * 15 + 1) * box,
+  y: Math.floor(Math.random() * 15 + 1) * box
+}
 
 function criarBG() {
   context.fillStyle = "lightgreen"; //aplica cor ao  context
@@ -19,6 +25,13 @@ function criarCobrinha() {
     context.fillRect(snake[i].x, snake[i].y, box, box)
   }
 }
+
+function drawFood() {
+  context.fillStyle = "red";
+  //coordenadas
+  //food x food y altura e largura
+  context.fillRect(food.x, food.y, box, box)
+}
 //evento de escuta que executa update
 document.addEventListener('keydown', update);
 //argumento é o evento de tecla, o keyCode
@@ -30,14 +43,15 @@ function update (event){
 }
 function iniciarJogo () {
   //plano cartesiano, de 0 a 16 eyxos x,y -x, -y
-  //quando chega no 16 x, passa para o -16 x
+  //quando chega no 16 x, passa para o 0 x
   if (snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
   if (snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
   if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
   if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
-  
+
   criarBG();
   criarCobrinha();
+  drawFood();
 
   //definir ponto de partida
   //a posição de snake na posição X,Y
