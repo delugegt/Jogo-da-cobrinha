@@ -19,8 +19,23 @@ function criarCobrinha() {
     context.fillRect(snake[i].x, snake[i].y, box, box)
   }
 }
-
+//evento de escuta que executa update
+document.addEventListener('keydown', update);
+//argumento é o evento de tecla, o keyCode
+function update (event){
+  if(event.keyCode == 37 && direction != "right") direction = "left";
+  if(event.keyCode == 38 && direction != "down") direction = "up";
+  if(event.keyCode == 39 && direction != "left") direction = "right";
+  if(event.keyCode == 40 && direction != "up") direction = "down";
+}
 function iniciarJogo () {
+  //plano cartesiano, de 0 a 16 eyxos x,y -x, -y
+  //quando chega no 16 x, passa para o -16 x
+  if (snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+  if (snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
+  if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+  if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
+  
   criarBG();
   criarCobrinha();
 
@@ -39,8 +54,8 @@ function iniciarJogo () {
   snake.pop();
 
   let newHead = {
-    x = snakeX,
-    y = snakeY
+    x : snakeX,
+    y : snakeY
   }
 
   snake.unshift(newHead);
