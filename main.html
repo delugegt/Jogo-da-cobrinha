@@ -5,11 +5,34 @@
     <link rel="stylesheet" href="./css/style.css">
     <!--faz o js ser carregado no final-->
     <script defer src="./script.js"></script>
+
+    <!--fontes-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet"> 
+
+
     <title> Jogo da Cobrinha </title>
   </head>
   <body>
-    <!--canvas, trabalha a parte gráfica-->
+    <!--counter-->
+    <div class="container">
+      <p id="bem-vindo"><i>
+        Bem vindo ao Jogo da Cobrinha
+      </i>
+      </p>
+      <p class="tutorial">
+        Utilize os direcionais do seu teclado para jogar 
+      </p>
+    <!--refresh page-->
+      <button id="lose" class="refresh-page" onclick="refreshPage()">
+        Puxa, você perdeu..
+      </button>
+    </div>
+
+    <!--game Canvas-->
     <canvas id="snake" width="512" height="512"></canvas>
+     
   </body>
 </html>
 

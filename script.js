@@ -3,6 +3,8 @@ let canvas = document.getElementById("snake"); //chamou canvas html snake
 let context = canvas.getContext("2d"); //plano 2d
 let box = 32; 32 //pixels cada quadrado
 let snake = []; //cobrinha é um array
+//let elemento = document.getElementById("contador"); //elemento contador
+//let contador = 0; //contador
 snake[0] = { //detalhando indices/itens do array
   x: 8 * box,
   y: 8 * box
@@ -33,9 +35,10 @@ function drawFood() {
   //food x food y altura e largura
   context.fillRect(food.x, food.y, box, box)
 }
+
 //evento de escuta que executa update
 document.addEventListener('keydown', update);
-//argumento é o evento de tecla, o keyCode
+//argumento é o evento de tecla, o keyCode, confira o keycode do teclado em: https://keycode.info/
 function update (event){
   if(event.keyCode == 37 && direction != "right") direction = "left";
   if(event.keyCode == 38 && direction != "down") direction = "up";
@@ -53,9 +56,15 @@ function iniciarJogo () {
     //game over 
   for ( i = 1; i < snake.length; i++) {
     if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
+      
+
+     
       clearInterval(jogo);
-      alert('Game Over');
-    }
+      document.getElementById("lose").style.display = "block";
+      
+      //alert('Game Over');
+    } 
+    
   }
 
   criarBG();
@@ -92,3 +101,14 @@ function iniciarJogo () {
 }
 
 let jogo = setInterval(iniciarJogo, 100); //intervalo de 100 milisec para iniciar o jogo, renovar e dar continuidade ao jogo se travar 
+
+function refreshPage() {
+  window.location.reload();
+}
+/*
+var contador = function() {
+  console.log("deu");
+}
+clearInterval(iniciarJogo);
+var counter = setInterval(iniciarJogo, 100);
+*/
